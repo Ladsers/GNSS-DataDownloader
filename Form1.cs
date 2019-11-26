@@ -45,25 +45,36 @@ namespace GNSS_data_downloader
 
         }
         #endregion
-        #region Set directory to save
+        #region Set folder to save
+        private string OpenFolderDialog()
+        {
+            FolderBrowserDialog folderDialog = new FolderBrowserDialog();
+            folderDialog.Description = "Select folder to save data";
+            if (folderDialog.ShowDialog() == DialogResult.Cancel)
+                return "";
+            string pathFolder = folderDialog.SelectedPath;
+            if (!pathFolder.EndsWith("\\")) pathFolder += "\\";
+            return pathFolder;
+        }
+
         private void btnDirEphIGS_Click(object sender, EventArgs e)
         {
-            //todo: open directory dialog
+            tbSaveEphIGS.Text = OpenFolderDialog();
         }
 
         private void btnDirYuma_Click(object sender, EventArgs e)
         {
-            //todo: open directory dialog
+            tbSaveYuma.Text = OpenFolderDialog();
         }
 
         private void btnDirEphIAC_Click(object sender, EventArgs e)
         {
-            //todo: open directory dialog
+            tbSaveEphIAC.Text = OpenFolderDialog();
         }
 
         private void btnDirHltIAC_Click(object sender, EventArgs e)
         {
-            //todo: open directory dialog
+            tbSaveHltIAC.Text = OpenFolderDialog();
         }
 
         #endregion
